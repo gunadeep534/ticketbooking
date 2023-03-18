@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Theater Ticket Booking</title>
+     <!-- Cascading dropdown means one dropdown depends on another dropdown -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        select {
+          width: 250px;
+          height: 50px;
+          margin-left: 25px;
+          border-radius: 10px;
+        }
+        button {
+          margin-left: 25px;
+          border-radius: 10px;
+        }
+      </style>
+    <script>
+        var movies = ["Select The Movie","og","pksdt","hariharaveeramallu","ustadbhagatsingh"];
+        var og = ["Select The Cinema","Revathipicturpalace","sriramarajutheatre","G3brungavan","srinatarajpicturepalace","G3theatres,robertsonpeta"];
+        var pksdt = ["Select The Cinema","G3theatres,robertsonpeta","srinatarajpicturepalace"];
+        var hariharaveeramallu = ["Select The Cinema","Revathipicturpalace","sriramarajutheatre","srinatarajpicturepalace","G3brungavan"];
+        var ustadbhagatsingh = ["Select The Cinema","G3brungavan","srinatarajpicturepalace","G3theatres,robertsonpeta"];
+        var Revathipicturpalace = ["Select The Date","Wed 8 jan","fri 9 Mar","sun 22 oct"];
+        var sriramarajutheatre = ["Select The Date","Wed 8 jan","fri 9 Mar"];
+        var G3theatres,robertsonpeta = ["Select The Date","fri 9 Mar","Wed 8 jan"];
+        var srinatarajpicturepalace = ["Select The Date","Wed 8 jan","fri 9 Mar"];
+        var G3brungavan = ["Select The Date","Wed 8 jan","fri 9 Mar","sun 22 oct"];
+        var jan8 = ["Select The Time","11:30am","2:30pm","6:30pm","9:30pm"];
+        var mar9 = ["Select The Time","11:30am","2:30pm","6:30pm","9:30pm"];
+        var sun22 = ["Select The Time","11:30am","2:30pm","6:30pm","9:30pm"];
+        
+        var cinemas = [];
+        var dates = [];
+        var times = [];
+
+        function LoadMovie(){
+            for(var movie of movies){
+                 var option = document.createElement("option");
+                 option.text=movie;
+                 option.value=movie;
+                 document.getElementById("movie").appendChild(option);
+            }
+        }
+        function ChangeMovie(){
+            var movieName=document.getElementById("movie").value;
+
+              switch(movieName){
+                case "og":
+                 cinemas = og;
+                 LoadCinema();
+                 break;
+                case "pksdt":
+                 cinemas = pksdt;
+                 LoadCinema();
+                 break;
+                case "hariharaveeramallu":
+                 cinemas = hariharaveeramallu;
+                 LoadCinema();
+                 break;
+                case "ustadbhagatsingh":
+                 cinemas = ustadbhagatsingh;
+                 LoadCinema();
+                default:
+                 cinemas = ["Select The Cinema"]
+                 LoadCinema;
+              }
+        }
+
+        function LoadCinema(){
+            document.getElementById("cinema").innerHTML="";
+            for(var cinema of cinemas){
+                var option = document.createElement("option");
+                option.text=cinema;
+                option.value=cinema;
+                document.getElementById("cinema").appendChild(option);
+            }
+        }
+        function ChangeCinema(){
+            var cinemaName = document.getElementById("cinema").value;
+              switch(cinemaName){
+                case "Revathipicturpalace":
+                 dates = Revathipicturpalace;
+                 LoadDate();
+                 break;
+                case "sriramarajutheatre":
+                 dates = sriramarajutheatre;
+                 LoadDate();
+                 break;
+                case "G3theatres,robertsonpeta":
+                 dates = G3theatres,robertsonpeta;
+                 LoadDate();
+                 break;
+                 case "srinatarajpicturepalace":
+                 dates = srinatarajpicturepalace;
+                 LoadDate();
+                 break;
+                 case "G3brungavan":
+                 dates = G3brungavan;
+                 LoadDate();
+                 break;
+                default:
+                 dates = ["Select The Dates"];
+              }
+        }
+        function LoadDate(){
+            document.getElementById("date").innerHTML="";
+            for(var date of dates){
+                var option = document.createElement("option");
+                option.text=date;
+                option.value=date;
+                document.getElementById("date").appendChild(option);
+            }
+        }
+        function ChangeDate(){
+            var dateName= document.getElementById("date").value;
+              switch(dateName){
+                    case "Wed 8 jan":
+                     times = jan8;
+                     LoadTime();
+                     break;
+                    case "fri 9 Mar":
+                     times = mar9;
+                     LoadTime();
+                     break;
+                    case "sun 22 oct":
+                     times = sun22;
+                     LoadTime();
+                     break;
+              }
+        }
+        function LoadTime(){
+            document.getElementById("time").innerHTML="";
+            for(var time of times){
+                var option = document.createElement("option");
+                option.text = time;
+                option.value=time;
+                document.getElementById("time").appendChild(option);
+            }
+        }
+    function bodyload(){
+        LoadMovie();
+        LoadCinema();
+        LoadDate();
+        LoadTime();
+    }
+    function printClick(){
+    document.getElementById("lblmovie").innerHTML=document.getElementById("movie").value;
+    document.getElementById("lblcinema").innerHTML=document.getElementById("cinema").value;
+    document.getElementById("lbldate").innerHTML=document.getElementById("date").value;
+    document.getElementById("lbltime").innerHTML=document.getElementById("time").value;
+   
+
+    movieName = document.getElementById("movie").value;
+            if(movieName=="og"){
+                document.getElementById("poster").src="public/image/og.jpg";
+            }
+            if(movieName=="pksdt") {
+                document.getElementById("poster").src="public/image/pksdt.jpg";
+            }
+            if(movieName=="hariharaveeramallu") {
+                document.getElementById("poster").src="public/image/veera.jpg";
+            }
+            if(movieName=="ustadbhagatsingh") {
+                document.getElementById("poster").src="public/image/ustaad.jpg";
+            }
+    }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark" >
+        <div class="container-fluid">
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#NavItems">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <img src="public/image/movie.jpg" style="width: 100px;height: 100px;" class="navbar-brand" >
+            
+            <div class="navbar-collapse collapse justify-content-center text-uppercase" id="NavItems">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Online Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Food & Snacks</a>
+                    </li>
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+        <div class="carousel slide carousel-dark" id="banner" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="3000">
+                    <img src="public/image/disney.jpg" style="height: 300px;" class="w-100 d-block">
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="public/image/amazon.jpg" style="height: 300px;" class="w-100 d-block">
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="public/image/netflix.jpg" style="height: 300px;" class="w-100 d-block">
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="public/image/aha.jpg" style="height: 300px;" class="w-100 d-block">
+                </div>
+            </div>
+            <button data-bs-slide="prev" data-bs-target="#banner" class="carousel-control-prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button data-bs-slide="next" data-bs-target="#banner" class="carousel-control-next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+
+    <div style="display: flex;" class="mt-3 d-flex justify-content-between bg-dark p-2">
+        <div>
+            <select id="movie" onchange="ChangeMovie()"> </select>
+        </div>
+        <div>
+            <select id="cinema" onchange="ChangeCinema()"> </select>
+        </div>
+        <div>
+            <select id="date" onchange="ChangeDate()"> </select>
+        </div>
+        <div>
+            <select id="time"> </select>
+        </div>
+        <div>
+            <button data-bs-target="#book" data-bs-toggle="modal" class="btn btn-success" onclick="printClick()">Book</button>
+        </div>
+            <div class="modal fade" id="book">
+            <div class="modal-dialog">
+                <div class="modal-content border border-3 border-danger">
+                    <div class="modal-header">
+                        <h3 style="color:blue;">Book Ticket</h3>
+                        <button class="btn-close"  data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <dl class="row">
+                            <dt>
+                                <img id="poster" width="100%" height="200">
+                            </dt>
+                            <dt class="col-5 mt-6">Movie Name:</dt>
+                            <dd class="col-7 mt-6" id="lblmovie"></dd>
+                            <dt class="col-5 mt-6">Theator:</dt>
+                            <dd class="col-7 mt-6" id="lblcinema"></dd>
+                            <dt class="col-5 mt-6">On Date:</dt>
+                            <dd class="col-7 mt-6" id="lbldate"></dd>
+                            <dt class="col-5 mt-6">On Time:</dt>
+                            <dd class="col-7 mt-6" id="lbltime"></dd>
+                        </dl>
+                        <div class="row mt-3">
+                            <div class="col text-center">
+                                <button class="btn btn-danger" onclick="window.print()">Print</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
